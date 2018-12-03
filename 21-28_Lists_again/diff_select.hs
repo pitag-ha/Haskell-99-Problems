@@ -2,7 +2,7 @@ module DiffSelect (diff_select) where
 
 import System.Random
 
-diff_select :: Int -> Int -> [Int]
+diff_select :: Int -> Int -> IO [Int]
 diff_select k m = do
     gen <- getStdGen
     return $ helper k m gen []
@@ -15,4 +15,5 @@ helper k m gen l
     where (rand_num, new_gen) = randomR (1,m) gen 
 
 main = do
-    putStrLn $ show (diff_select 10 10)
+    result <- diff_select 10 10
+    putStrLn $ show result
